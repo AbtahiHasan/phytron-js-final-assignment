@@ -1,9 +1,8 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 
 body {
     background-color: white;
@@ -12,8 +11,8 @@ body {
 .search-box {
     width: 55%;
     max-width: 650px;
-    border-radius: 50px;           
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.12);  
+    border-radius: 50px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.12);
 }
 
 .search-input {
@@ -27,14 +26,14 @@ body {
 
 .search-input:focus {
     box-shadow: none !important;
-    border-color: #ccc !important;
+    border-color: #2a9b1e !important;
 }
 
 .btn-search {
     border-radius: 0 50px 50px 0;
-    border: 1px solid #ccc;
+    border: 1px solid #2a9b1e;
     border-left: none;
-    background: #f8f9fa;
+    background: #2a9b1e;
     height: 50px;
     padding: 0 25px;
     font-size: 16px;
@@ -43,7 +42,7 @@ body {
 }
 
 .btn-search:hover {
-    background: #e9ecef;
+    background: #2a9b1e90;
 }
 
 .btn-search i {
@@ -51,7 +50,7 @@ body {
 }
 
 .btn-search:hover {
-    background: #e9ecef;
+    background: #2a9b1e90;
 }
 
 .modal-md {

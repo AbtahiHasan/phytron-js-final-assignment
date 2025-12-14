@@ -1,12 +1,12 @@
-
 let cart = [];
 
 const allDrink = async () => {
   try {
-    const res = await fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a");
+    const res = await fetch(
+      "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a",
+    );
     const data = await res.json();
     displayData(data.drinks);
-
   } catch (error) {
     console.log(error);
   }
@@ -36,7 +36,7 @@ const displayData = (drinks) => {
           </p>
 
           <div class="d-flex gap-2 mt-auto">
-              <button 
+              <button
                 class="btn btn-outline-secondary w-100 text-nowrap"
                 id="btn-${drink.idDrink}"
                 onclick='addToCart("${drink.idDrink}", "${drink.strDrink}", "${drink.strDrinkThumb}")'
@@ -44,7 +44,7 @@ const displayData = (drinks) => {
                 Add to group
               </button>
 
-              <button 
+              <button
                 class="btn btn-primary w-100 text-nowrap"
                 onclick='drinksDetails("${drink.idDrink}")'
               >
@@ -60,7 +60,9 @@ const displayData = (drinks) => {
 };
 
 const drinksDetails = async (id) => {
-  const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
+  const res = await fetch(
+    `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`,
+  );
   const data = await res.json();
   const drink = data.drinks[0];
 
@@ -79,22 +81,15 @@ const drinksDetails = async (id) => {
   new bootstrap.Modal(document.getElementById("drinkModal")).show();
 };
 const addToCart = (id, name, img) => {
-  const existingItem = cart.find(item => item.id === id);
-  
+  const existingItem = cart.find((item) => item.id === id);
+
   // If item already exists, remove it
   if (existingItem) {
-    cart = cart.filter(item => item.id !== id);
-    updateCartUI();
-    
-    const btn = document.getElementById(`btn-${id}`);
-    btn.innerText = "Add to group";
-    btn.classList.remove("btn-danger");
-    btn.classList.add("btn-outline-secondary");
     return;
   }
 
   if (cart.length >= 7) {
-    alert("tumi 7tar besi mod khaite parba na pore moira jaba!");
+    alert("Max limit reach");
     return;
   }
 
@@ -107,10 +102,9 @@ const addToCart = (id, name, img) => {
   btn.classList.add("btn-danger");
 };
 
-
 const updateCartUI = () => {
   const cartDiv = document.querySelector(".cart");
-  
+
   cartDiv.classList.remove("d-none");
 
   if (cart.length === 0) {
@@ -129,13 +123,17 @@ const updateCartUI = () => {
 
     <table class="table cart-table">
       <tbody>
-        ${cart.map((item, index) => `
+        ${cart
+          .map(
+            (item, index) => `
           <tr>
             <td>${index + 1}</td>
             <td><img src="${item.img}" width="45"></td>
             <td>${item.name}</td>
           </tr>
-        `).join("")}
+        `,
+          )
+          .join("")}
       </tbody>
     </table>
   `;
@@ -154,7 +152,9 @@ const findDrink = async () => {
   }
 
   try {
-    const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`);
+    const res = await fetch(
+      `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`,
+    );
     const data = await res.json();
 
     if (data.drinks) {
@@ -165,17 +165,7 @@ const findDrink = async () => {
     }
 
     input.value = "";
-
   } catch (error) {
     console.log(error);
   }
 };
-
-
-document.querySelector(".input-value").addEventListener("keypress", (e) => {
-  if (e.key === "Enter") 
-    findDrink();
-});
-
-
-
